@@ -12,7 +12,7 @@ export default function Item() {
           </p>
           <div className="bg-body-secondary mt-4">
             <a className="btn btn-primary my-3" href="#!">
-              Call to action
+              Find Out More!
             </a>
           </div>
         </div>
