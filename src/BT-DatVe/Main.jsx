@@ -1,8 +1,12 @@
 import React from "react";
 import data from "./danhSachGhe.json";
-import SeatItem from "./SeatItem";
+import SeatList from "./SeatList";
 
 export default function Main() {
+  const handleGet = () => {
+    alert("Vui lòng điền thông tin");
+  };
+
   return (
     <>
       <div
@@ -12,7 +16,7 @@ export default function Main() {
           backgroundPosition: "center",
           backgroundSize: "cover",
           width: "100%",
-          height: "100vh",
+          height: "150vh",
         }}
       >
         <h1 className="text-center text-white py-5">MOVIE SEAT SELECTION</h1>
@@ -27,6 +31,7 @@ export default function Main() {
           <div
             style={{
               width: "800px",
+              height: "100%",
               background: "rgba(128, 128, 128, 0.34)",
               display: "flex",
               alignItems: "center",
@@ -54,7 +59,7 @@ export default function Main() {
                   <input type="number" />
                 </div>
 
-                <button className="btn btn-light w-25 mt-3">
+                <button className="btn btn-light w-25 mt-3" onClick={handleGet}>
                   Start Selecting
                 </button>
 
@@ -87,15 +92,14 @@ export default function Main() {
                       marginRight: "16px",
                       color: "white",
                       display: "inline-block",
-                    //   ':before':{
-                    //     content: "",
-                    //     width: "15px",
-                    //     height: "15px",
-                    //     display: "inline-block",
-                    //     marginRight: "10px",
-                    //   }
+                      //   ':before':{
+                      //     content: "",
+                      //     width: "15px",
+                      //     height: "15px",
+                      //     display: "inline-block",
+                      //     marginRight: "10px",
+                      //   }
                     }}
-                    
                     className="me-5"
                   >
                     Empty Seat
@@ -103,7 +107,7 @@ export default function Main() {
                 </ul>
 
                 <div>
-                    <SeatItem Seats={data}/>
+                  <SeatList seats={data} />
                 </div>
               </div>
             </div>
