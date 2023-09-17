@@ -1,25 +1,29 @@
 import React from "react";
 import SeatItem from "./SeatItem";
+import { useSelector } from "react-redux";
 
 export default function SeatList({ seats }) {
-  console.log(seats);
+  const { selectedSeats } = useSelector((state) => {
+    return state.ticket;
+  });
+
   return (
     <table>
       <tbody>
         {seats.map((seat) => {
-          if (seat.hang === "/") {
+          if (seat.hang === "") {
             return (
               <tr className="text-danger fs-3" style={{ alignItems: "center" }}>
                 <td>
                   <span></span>
                 </td>
-                {seat.danhSachGhe.map((item) => (
+                {seat.danhSachGhe.map((seat) => (
                   <td>
                     <span
                       className="d-inline-block"
                       style={{ width: "50px", textAlign: "center" }}
                     >
-                      {item.soGhe}
+                      {seat.soGhe}
                     </span>
                   </td>
                 ))}
@@ -27,20 +31,17 @@ export default function SeatList({ seats }) {
             );
           }
           return (
-            <tr style={{ alignItems: "center" }} className="text-danger fs-4 ">
+            <tr
+              style={{ alignItems: "center" }}
+              className="text-danger fs-4"
+              key={seat.id}
+            >
               <td>{seat.hang}</td>
-
-              {seat.danhSachGhe.map((soghe) => {
-                return (
-                  <td>
-                    <button
-                      className="btn btn-primary m-1 p-2"
-                      style={{ width: "50px", textAlign: "center" }}
-                    >
-                      {soghe.soGhe}
-                    </button>
-                  </td>
+              {seat.danhSachGhe.map((seat) => {
+                const isSelected = selectedSeats.find(
+                  (item) => item.soGhe === seat.soGhe
                 );
+                return <SeatItem seat={seat} isSelected={!!isSelected} />;
               })}
             </tr>
           );

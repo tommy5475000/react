@@ -9,13 +9,19 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 
+import store from "./store";
+import { Provider } from "react-redux";
+
 const queryclient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <QueryClientProvider client={queryclient}>
+    <Provider store={store}>
     <App />
+
+    </Provider>
   </QueryClientProvider>
 );
 
